@@ -5,6 +5,6 @@ export const Review = ({ user, text, rating }) => (
   <div>
     <span>Author: {user}</span>
     <span>{text}</span>
-    <Rate value={rating}></Rate>
+    <Rate value={rating} />
   </div>
 );
