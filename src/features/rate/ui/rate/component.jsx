@@ -12,6 +12,7 @@ export const Rate = ({ value, size = "medium" }) => (
       <img
         src={index >= value ? Star : GoldStar}
         className={classnames(styles.star, styles[size])}
+        loading="lazy"
       />
     ))}
   </div>

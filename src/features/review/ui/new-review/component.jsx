@@ -47,8 +47,12 @@ export const NewReview = () => {
         <span className={styles.elementTitle}>Rating</span>
         <input
           value={state.rating}
+          type="number"
           onChange={(event) => {
-            dispatch({ type: "setRating", payload: event.target.value });
+            dispatch({
+              type: "setRating",
+              payload: Number(event.target.value),
+            });
           }}
         />
       </div>
