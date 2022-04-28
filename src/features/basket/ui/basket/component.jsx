@@ -20,11 +20,13 @@ export const Basket = ({ products, onClearBasket, className }) => {
           <span>Empty</span>
         )}
       </div>
-      {products?.length > 0 && (
-        <button onClick={onClearBasket} className={styles.clearAction}>
-          Clear
-        </button>
-      )}
+      <button
+        onClick={onClearBasket}
+        className={styles.clearAction}
+        disabled={products?.length <= 0}
+      >
+        Clear
+      </button>
     </div>
   );
 };

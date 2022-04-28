@@ -6,7 +6,8 @@ import { clearBasket } from "../../module/actions";
 
 export const BasketContainer = (props) => {
   const dispatch = useDispatch();
-  const products = useSelector(selectOrderedProducts);
+
+  const products = useSelector((state) => selectOrderedProducts(state));
 
   const clearBasketCallback = useCallback(() => dispatch(clearBasket()), []);
 
