@@ -1,17 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RestaurantContainer } from "../restaurant/container";
 import { RestaurantTabsContainer } from "../restaurant-tabs/container";
 
-export const Restaurants = ({ restaurantIds }) => {
-  const [currentRestaurantId, setCurrentRestaurantId] = useState(
-    restaurantIds[0]
-  );
+export const Restaurants = ({ restaurantIds, currentRestaurantId }) => {
+  const onTabClick = useCallback((event, id) => {}, []);
 
-  useEffect(() => {
-    setCurrentRestaurantId(restaurantIds[0]);
-  }, [restaurantIds]);
-
-  if (!restaurantIds?.length || !currentRestaurantId) {
+  if (!restaurantIds?.length) {
     return null;
   }
 
@@ -19,9 +13,11 @@ export const Restaurants = ({ restaurantIds }) => {
     <div>
       <RestaurantTabsContainer
         selectedId={currentRestaurantId}
-        onTabSelect={setCurrentRestaurantId}
+        onTabSelect={onTabClick}
       />
-      <RestaurantContainer restaurantId={currentRestaurantId} />
+      {currentRestaurantId && (
+        <RestaurantContainer restaurantId={currentRestaurantId} />
+      )}
     </div>
   );
 };

@@ -6,19 +6,30 @@ import {
 } from "../../module/selectors";
 import { loadRestaurants } from "../../module/thunks/load-restarants";
 import { useEffect } from "react";
+import { loadUsers } from "../../../user/module/thunks/load-users";
+import { selectIsUsersLoading } from "../../../user/module/selectors";
+import { useCurrentRestaurantId } from "../../hooks/use-current-restaurant-id";
 
 export const RestaurantsContainer = (props) => {
   const dispatch = useDispatch();
   const restaurantIds = useSelector(selectRestaurantIds);
-  const isLoading = useSelector(selectIsRestaurantsLoading);
+  const isRestaurantLoading = useSelector(selectIsRestaurantsLoading);
+  const isUsersLoading = useSelector(selectIsUsersLoading);
 
   useEffect(() => {
     dispatch(loadRestaurants());
+    dispatch(loadUsers());
   }, []);
 
-  return isLoading ? (
+  const currentRestaurantId = useCurrentRestaurantId();
+
+  return isRestaurantLoading || isUsersLoading ? (
     <span>Loading</span>
   ) : (
-    <Restaurants {...props} restaurantIds={restaurantIds} />
+    <Restaurants
+      {...props}
+      currentRestaurantId={currentRestaurantId}
+      restaurantIds={restaurantIds}
+    />
   );
 };

@@ -1,8 +1,9 @@
 .root {
-  border: none;
   background: inherit;
   font-size: 18px;
   padding: 10px;
+  text-decoration: none;
+  color: red;
 
   &.selected {
     border-bottom: 1px solid black;
@@ -14,5 +15,4 @@
     padding-bottom: 8px;
     cursor: pointer;
   }
-
 }

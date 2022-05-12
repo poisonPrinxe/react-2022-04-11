@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const restaurantSlice = createSlice({
-  name: "restaurant",
+export const productSlice = createSlice({
+  name: "product",
   initialState: {
     entities: {},
     ids: [],
@@ -29,9 +29,6 @@ export const restaurantSlice = createSlice({
         }, {}),
       };
       state.ids = Object.keys(state.entities);
-    },
-    addReviewToRestaurant: (state, { payload }) => {
-      state.entities[payload.restaurantId].reviews.push(payload.reviewId);
     },
   },
 });

@@ -12,8 +12,12 @@ export const createSelectReviewById = () =>
   );
 
 export const selectReviewByIds = (state, reviewIds) =>
-  reviewIds.map(
-    (reviewId) => selectReviewModuleState(state).entities[reviewId]
-  );
+  reviewIds
+    .map((reviewId) => selectReviewModuleState(state).entities[reviewId])
+    .filter(Boolean);
 
-export const selectReviewIds = (state) => selectReviewModuleState(state).ids;
+export const selectReviewIds = (state) =>
+  selectReviewModuleState(state).ids || [];
+
+export const selectIsReviewsLoading = (state) =>
+  selectReviewModuleState(state).isLoading;

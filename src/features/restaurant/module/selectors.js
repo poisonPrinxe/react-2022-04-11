@@ -6,17 +6,33 @@ export const selectRestaurantModuleState = (state) => state.restaurant;
 export const selectRestaurantById = (state, payload) =>
   selectRestaurantModuleState(state).entities[payload.restaurantId];
 
+export const selectRestaurantReviewsById = (state, payload) =>
+  selectRestaurantModuleState(state)?.entities[payload.restaurantId]?.reviews ||
+  [];
+
+export const selectRestaurantProductsById = (state, payload) =>
+  selectRestaurantModuleState(state)?.entities[payload.restaurantId]?.menu ||
+  [];
+
 export const selectRestaurants = (state) =>
   Object.values(selectRestaurantModuleState(state).entities);
 
 export const selectRestaurantTabs = (state) =>
   Object.values(selectRestaurantModuleState(state).entities).map(
-    ({ name, id }) => ({ label: name, id })
+    ({ name, id }) => ({ label: name, id, href: `/restaurant/${id}` })
   );
 
 export const selectRestaurantRating = (state, restaurantId) => {
   const restaurant = selectRestaurantById(state, { restaurantId });
+
+  if (!restaurant) {
+    return 0;
+  }
   const reviews = selectReviewByIds(state, restaurant.reviews);
+
+  if (!reviews?.length) {
+    return 0;
+  }
 
   return Math.ceil(
     reviews.reduce((prev, curr) => prev + curr.rating, 0) / reviews.length

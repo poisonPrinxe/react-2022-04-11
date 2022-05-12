@@ -11,7 +11,7 @@ export function loadRestaurants() {
 
     dispatch(restaurantSlice.actions.startLoading(null));
 
-    fetch("/api/restaurants")
+    fetch("http://localhost:3001/api/restaurants")
       .then((response) => response.json())
       .then((restaurants) => {
         dispatch(restaurantSlice.actions.finishLoading(restaurants));
