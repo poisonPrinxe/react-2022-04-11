@@ -1,17 +1,17 @@
 import Logo from "./img/logo.svg";
 import styles from "./styles.module.scss";
-import { ThemeContext } from "../../../theme/context";
-import { useContext } from "react";
-import { LinkContainer } from "../../../custom-routing/ui/link/container";
+import { Link } from "react-router-dom";
 
-export const Header = () => {
-  const theme = useContext(ThemeContext);
-
-  return (
-    <header className={styles.root}>
+export const Header = () => (
+  <header className={styles.root}>
+    <Link to="/">
       <img src={Logo} className={styles.logo} alt="logo" />
-      <LinkContainer href="/basket/" label="Basket" />
-      <LinkContainer href="/restaurants/" label="Restaurants" />
-    </header>
-  );
-};
+    </Link>
+    <Link to="/restaurants" className={styles.link}>
+      Restaurants
+    </Link>
+    <Link to="/basket" className={styles.link}>
+      Basket
+    </Link>
+  </header>
+);

@@ -1,0 +1,18 @@
+.root {
+  text-decoration: none;
+  color: black;
+  padding-bottom: 4px;
+  padding-top: 4px;
+
+  &:hover {
+    padding-bottom: 3px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    transition: 0.1s;
+  }
+}
+
+.activeRoot {
+  padding-bottom: 1px;
+  border-bottom: 3px solid black;
+}

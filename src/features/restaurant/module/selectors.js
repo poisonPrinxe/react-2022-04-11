@@ -1,5 +1,6 @@
 import { selectReviewByIds } from "../../review/module/selectors";
 import { createSelector } from "reselect";
+import { ROUTES } from "../../../constants/routes";
 
 export const selectRestaurantModuleState = (state) => state.restaurant;
 
@@ -19,7 +20,11 @@ export const selectRestaurants = (state) =>
 
 export const selectRestaurantTabs = (state) =>
   Object.values(selectRestaurantModuleState(state).entities).map(
-    ({ name, id }) => ({ label: name, id, href: `/restaurant/${id}` })
+    ({ name, id }) => ({
+      label: name,
+      id,
+      href: `/${ROUTES.Restaurants}/${id}`,
+    })
   );
 
 export const selectRestaurantRating = (state, restaurantId) => {

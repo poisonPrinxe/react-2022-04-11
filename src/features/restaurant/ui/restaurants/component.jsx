@@ -1,23 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
-import { RestaurantContainer } from "../restaurant/container";
 import { RestaurantTabsContainer } from "../restaurant-tabs/container";
+import { Outlet } from "react-router-dom";
 
-export const Restaurants = ({ restaurantIds, currentRestaurantId }) => {
-  const onTabClick = useCallback((event, id) => {}, []);
-
+export const Restaurants = ({ restaurantIds }) => {
   if (!restaurantIds?.length) {
     return null;
   }
 
   return (
     <div>
-      <RestaurantTabsContainer
-        selectedId={currentRestaurantId}
-        onTabSelect={onTabClick}
-      />
-      {currentRestaurantId && (
-        <RestaurantContainer restaurantId={currentRestaurantId} />
-      )}
+      <RestaurantTabsContainer />
+      <Outlet />
     </div>
   );
 };

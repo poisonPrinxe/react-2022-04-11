@@ -8,7 +8,6 @@ import { loadRestaurants } from "../../module/thunks/load-restarants";
 import { useEffect } from "react";
 import { loadUsers } from "../../../user/module/thunks/load-users";
 import { selectIsUsersLoading } from "../../../user/module/selectors";
-import { useCurrentRestaurantId } from "../../hooks/use-current-restaurant-id";
 
 export const RestaurantsContainer = (props) => {
   const dispatch = useDispatch();
@@ -21,15 +20,9 @@ export const RestaurantsContainer = (props) => {
     dispatch(loadUsers());
   }, []);
 
-  const currentRestaurantId = useCurrentRestaurantId();
-
   return isRestaurantLoading || isUsersLoading ? (
     <span>Loading</span>
   ) : (
-    <Restaurants
-      {...props}
-      currentRestaurantId={currentRestaurantId}
-      restaurantIds={restaurantIds}
-    />
+    <Restaurants {...props} restaurantIds={restaurantIds} />
   );
 };

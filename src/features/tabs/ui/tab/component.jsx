@@ -1,10 +1,16 @@
-import { LinkContainer } from "../../../custom-routing/ui/link/container";
+import { NavLink } from "react-router-dom";
+import styles from "./styles.module.scss";
+import classnames from "classnames";
 
-export const Tab = ({ href, label, onTabSelect, className }) => (
-  <LinkContainer
-    href={href}
-    className={className}
-    onClick={onTabSelect}
-    label={label}
-  />
+export const Tab = ({ href, label, className }) => (
+  <NavLink
+    to={href}
+    className={({ isActive }) =>
+      classnames(styles.root, className, {
+        [styles.activeRoot]: isActive,
+      })
+    }
+  >
+    {label}
+  </NavLink>
 );
